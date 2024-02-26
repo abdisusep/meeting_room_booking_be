@@ -32,7 +32,10 @@ const createClient = async (req, res) => {
 
     try {
       const newClient = await Client.create({ name, email, phone, credit });
-      res.status(201).json(newClient);
+      res.status(201).json({ 
+          success: true,
+          newClient
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -57,7 +60,10 @@ const updateClient = async (req, res) => {
   
       await client.save();
   
-      res.json(client);
+      res.status(200).json({ 
+          success: true,
+          client
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });

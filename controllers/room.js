@@ -32,7 +32,10 @@ const createRoom = async (req, res) => {
 
     try {
       const newRoom = await Room.create({ roomName, costPerHour });
-      res.status(201).json(newRoom);
+      res.status(201).json({ 
+          success: true,
+          newRoom
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -55,7 +58,10 @@ const updateRoom = async (req, res) => {
   
       await room.save();
   
-      res.json(room);
+      res.status(200).json({ 
+          success: true,
+          room
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
